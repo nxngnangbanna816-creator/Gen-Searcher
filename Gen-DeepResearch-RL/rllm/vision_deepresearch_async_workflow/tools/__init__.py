@@ -5,11 +5,13 @@ from vision_deepresearch_async_workflow.tools.python_interpreter_tool import (
     PythonInterpreterTool,
 )
 from vision_deepresearch_async_workflow.tools.search_tool import SearchTool
+from vision_deepresearch_async_workflow.tools.sample_tool import SampleTool
 from vision_deepresearch_async_workflow.tools.visit_tool import VisitTool
 
 __all__ = [
     "CropAndSearchTool",
     "PythonInterpreterTool",
     "SearchTool",
+    "SampleTool",
     "VisitTool",
 ]
