@@ -1,0 +1,125 @@
+<!doctype html>
+<html lang="th">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Gen-Searcher: คู่มือผู้มาใหม่</title>
+    <style>
+      :root {
+        --bg: #0b1020;
+        --card: #121a30;
+        --text: #e6ecff;
+        --muted: #aeb9dd;
+        --accent: #7aa2ff;
+      }
+      * { box-sizing: border-box; }
+      body {
+        margin: 0;
+        font-family: "Noto Sans Thai", "Segoe UI", Arial, sans-serif;
+        background: linear-gradient(180deg, var(--bg), #0f1730);
+        color: var(--text);
+        line-height: 1.65;
+      }
+      .container {
+        max-width: 960px;
+        margin: 0 auto;
+        padding: 32px 20px 80px;
+      }
+      h1, h2, h3 { line-height: 1.3; }
+      h1 { margin-top: 0; font-size: 2rem; }
+      .subtitle { color: var(--muted); margin-bottom: 24px; }
+      .card {
+        background: var(--card);
+        border: 1px solid rgba(255,255,255,.08);
+        border-radius: 14px;
+        padding: 20px;
+        margin-bottom: 16px;
+      }
+      code {
+        background: rgba(255,255,255,.08);
+        padding: 2px 6px;
+        border-radius: 6px;
+      }
+      pre {
+        background: #0a1124;
+        border: 1px solid rgba(255,255,255,.12);
+        border-radius: 10px;
+        padding: 14px;
+        overflow-x: auto;
+      }
+      ul, ol { padding-left: 22px; }
+      .muted { color: var(--muted); }
+      .tag {
+        display: inline-block;
+        padding: 4px 10px;
+        border-radius: 999px;
+        border: 1px solid rgba(122,162,255,.5);
+        color: #dce6ff;
+        margin-right: 8px;
+        margin-bottom: 8px;
+        font-size: .9rem;
+      }
+      a { color: #9fc2ff; }
+    </style>
+  </head>
+  <body>
+    <main class="container">
+      <h1>คู่มือผู้มาใหม่: Gen-Searcher</h1>
+      <p class="subtitle">หน้าเว็บสรุปโครงสร้างระบบ สิ่งสำคัญที่ต้องรู้ และทางเรียนรู้ต่อสำหรับผู้เริ่มต้น</p>
+
+      <section class="card">
+        <h2>1) โครงสร้างหลักของ Repository</h2>
+        <p>
+          โปรเจกต์นี้เป็นระบบหลายองค์ประกอบ โดยแบ่งงานหลักเป็น SFT, RL workflow, image API server และ evaluation
+        </p>
+        <div>
+          <span class="tag">Gen-DeepResearch-SFT/</span>
+          <span class="tag">Gen-DeepResearch-RL/</span>
+          <span class="tag">qwen_image_api_server/</span>
+          <span class="tag">KnowGen_Eval/</span>
+        </div>
+      </section>
+
+      <section class="card">
+        <h2>2) Mental Model การทำงาน</h2>
+        <ol>
+          <li>Setup environment และ dataset</li>
+          <li>เทรน SFT</li>
+          <li>ตั้งค่า tools/services (search, browse summary, image API)</li>
+          <li>เทรน RL agentic workflow</li>
+          <li>รัน inference</li>
+          <li>ประเมินผลด้วย KnowGen</li>
+        </ol>
+      </section>
+
+      <section class="card">
+        <h2>3) สิ่งสำคัญที่ผู้มาใหม่ต้องรู้</h2>
+        <ul>
+          <li>เป็น multi-component repo: ต้องเข้าใจ dependency ระหว่างแต่ละส่วน</li>
+          <li>ใช้ทรัพยากรสูง และต้องพึ่ง external endpoints / API keys</li>
+          <li>evaluation แยกจาก training และอิงรูปแบบข้อมูลผล inference</li>
+        </ul>
+      </section>
+
+      <section class="card">
+        <h2>4) ตัวอย่างเครื่องมือ + ทดสอบระบบ</h2>
+        <p>มีตัวอย่าง <code>sample_tool</code> สำหรับ smoke test การเรียกใช้งาน tools ได้อย่างรวดเร็ว</p>
+        <pre><code>cd Gen-DeepResearch-RL/rllm
+PYTHONPATH=. python vision_deepresearch_async_workflow/tools/test_sample_tool.py</code></pre>
+        <p class="muted">หากผ่านจะเห็นข้อความ <code>sample_tool test passed</code></p>
+      </section>
+
+      <section class="card">
+        <h2>5) เรียนรู้อะไรต่อ</h2>
+        <ol>
+          <li>อ่าน <code>README.md</code> ระดับ root ให้ครบ</li>
+          <li>ลงลึก <code>vision_deepresearch_async_workflow</code> ฝั่ง RL</li>
+          <li>ทำ data contract checklist ของ train/infer/eval</li>
+          <li>รันชุดเล็กให้ครบหนึ่งรอบก่อน optimize</li>
+        </ol>
+      </section>
+
+      <p class="muted">ไฟล์ต้นทางฉบับ Markdown: <code>docs/NEWCOMER_GUIDE_TH.md</code></p>
+    </main>
+  </body>
+</html>
